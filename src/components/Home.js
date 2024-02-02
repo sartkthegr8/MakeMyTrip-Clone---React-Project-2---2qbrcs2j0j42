@@ -1,8 +1,13 @@
 import React from 'react'
+import Navbar from './Navbar'
+import Offer from './Offer'
 
 function Home() {
   return (
-    <div>Home</div>
+    <div>
+        <Navbar/>
+        <Offer/>
+    </div>
   )
 }
 
