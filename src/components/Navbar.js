@@ -7,6 +7,7 @@ import "./Navbar.css"
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { DataAppContext } from './DataApp';
+import TopNavbar from './TopNavbar';
 
 function Navbar() {
 
@@ -26,14 +27,17 @@ function Navbar() {
     navigate('/');
   }
 
+
   return (
+    
     <div className='container'>
+     
       <div className='navbar'>
-        <div className='navbar__logo'>
+        {/* <div className='navbar__logo'>
           <Link to='/'>
             <img src='https://imgak.mmtcdn.com/pwa_v3/pwa_hotel_assets/header/logo@2x.png' alt='' />
           </Link>
-        </div>
+        </div> */}
         <div className='navbar__icons'>
           <div className='navbar__icon active'>
             <Link to='/flight'><FlightIcon sx={{ width: 30, height: 30 }} /><span>Flights</span>
