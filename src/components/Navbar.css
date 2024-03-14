@@ -6,6 +6,9 @@
     position: sticky;
     overflow-x: scroll;
 }
+.container.m-0{
+    margin: 0;
+}
 
 .navbar {
     width: 100%;

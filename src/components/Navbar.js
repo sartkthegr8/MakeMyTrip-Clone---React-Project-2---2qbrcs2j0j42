@@ -30,7 +30,7 @@ function Navbar() {
 
   return (
     
-    <div className='container'>
+    <div className='container m-0'>
      
       <div className='navbar'>
         {/* <div className='navbar__logo'>
