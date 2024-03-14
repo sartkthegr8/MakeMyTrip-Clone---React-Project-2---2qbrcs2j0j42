@@ -13,6 +13,7 @@ import DataApp from './components/DataApp';
 import Footer from './components/Footer';
 import TopNavbar from './components/TopNavbar';
 import TopFooter from './components/TopFooter';
+import AvailableTick from './components/AvailableTick';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
                   <Route path="/flight" element={<><FlightList/></>}/>
                   <Route path="/hotel" element={<><HotelList/></>}/>
                   <Route path="/train" element={ <><TrainList/></>}/>
+                  <Route path="/search" element={ <><AvailableTick/></>}/>
                   <Route path="/book" element={ <Book/>}/>
                   <Route path="/login" element={ <Login/>}/>
                   <Route path="/register" element={ <Register/>}/>

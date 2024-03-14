@@ -30,7 +30,7 @@ function Navbar() {
 
   return (
     
-    <div className='container m-0'>
+    <div className='container fullwidth'>
      
       <div className='navbar'>
         {/* <div className='navbar__logo'>
@@ -52,29 +52,29 @@ function Navbar() {
             <Link to='/train' ><TrainIcon sx={{ width: 30, height: 30 }} /><span>Trains</span>
             </Link>
           </div>
-          {
-            username && <div className='navbar__icon navbar__username'>
-                <span>{username}</span>
-            </div>
-          }
-
-          {
-            loginStatus ?
-              <div onClick={logoutFn} className='navbar__icon navbar__user'>
-                <Link to='/' >
-                  <span>Logout</span>
-                </Link>
-              </div>
-              :
-              <div className='navbar__icon navbar__user'>
-                <Link to='/login' >
-                  <span>Login</span>
-                </Link>
-              </div>
-          }
-
-
         </div>
+        <div className='navbar_log'>
+      {
+        username && <div className='navbar__icon navbar__username'>
+            <span>{username}</span>
+        </div>
+      }
+
+      {
+        loginStatus ?
+          <div onClick={logoutFn} className='navbar__icon navbar__user'>
+            <Link to='/' >
+              <span>Logout</span>
+            </Link>
+          </div>
+          :
+          <div className='navbar__icon navbar__user'>
+            <Link to='/login' >
+              <span>Login</span>
+            </Link>
+          </div>
+      }
+      </div>
       </div>
     </div>
   )

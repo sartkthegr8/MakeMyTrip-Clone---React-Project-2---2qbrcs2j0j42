@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import  history  from "history";
 import "../Home.css"
 
 function FHome({
@@ -101,7 +102,9 @@ function FHome({
 
                     </div>
                     <div>
-                        <button  className='home__search'type="submit">SEARCH</button>
+                        <button  className='home__search' onClick={()=>{
+                            
+                        }}>SEARCH</button>
                     </div>
                 </form>
 
