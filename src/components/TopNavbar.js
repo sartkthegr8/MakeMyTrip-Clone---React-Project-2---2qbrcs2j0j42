@@ -22,16 +22,7 @@ function TopNavbar() {
           <span className="separator">|</span>
           <a href="#" className="nav-link">Manage your bookings</a>
         </div>
-        <div className="nav-links">
-          <a href="#" className="nav-link">Login or Create Account</a>
-          <span className="separator">|</span>
-          <a href="#" className="nav-link">IN</a>
-          <span className="separator">|</span>
-          <a href="#" className="nav-link">ENG</a>
-          <span className="separator">|</span>
-          <a href="#" className="nav-link">INR</a>
-        </div>
-      </div>
+       </div>
     </div>
   );
 }

@@ -1,5 +1,4 @@
 .container {
-    
     width: 100%;
     box-shadow: 0 1px 7px 0 rgba(0,0,0,.4);
     z-index: 1000;
@@ -7,8 +6,7 @@
     position: sticky;
     overflow-x: scroll;
 }
-.container.fullwidth{
-    
+.container.fullwidth {
     margin: 0;
     max-width: 100%;
 }
@@ -18,18 +16,16 @@
     background: #fff;
     display: flex;
     justify-content: space-between;
-    
     padding: 1.5rem;
     align-items: center;
     height: 6rem;
-
 }
 
-.navbar__logo {
+.navbar_log {
     margin-left: 1rem;
 }
 
-.navbar__logo img {
+.navbar_log img {
     height: 3rem;
 }
 
@@ -82,11 +78,11 @@
 }
 
 @media only screen and (max-width: 768px) {
-    .navbar__logo {
+    .navbar__log {
         margin-left: 0;
     }
     
-    .navbar__logo img {
+    .navbar__log img {
         height: 2rem;
     }
 
@@ -108,7 +104,8 @@
         padding: 1rem;
     }
 }
-.navbar_log{
+
+.navbar_log {
     align-items: center;
     display: flex;
 }

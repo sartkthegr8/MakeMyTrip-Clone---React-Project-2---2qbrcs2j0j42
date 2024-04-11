@@ -56,7 +56,7 @@ function THome({
     return (
         <div className='home__container'>
             <div className='home'>
-                <p>Book International and Domestic Flights</p>
+                <p>Book Trains</p>
 
 
                 <form onSubmit={handleSubmit}>

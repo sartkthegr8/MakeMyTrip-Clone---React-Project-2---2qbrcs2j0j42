@@ -45,7 +45,7 @@ function HHome({
     return (
         <div className='home__container'>
             <div className='home'>
-                <p>Book International and Domestic Flights</p>
+                <p>Book Hotels</p>
 
 
                 <form onSubmit={handleSubmit}>
