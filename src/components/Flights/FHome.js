@@ -1,130 +1,108 @@
 import React, { useState, useEffect } from "react";
 import "../Home.css";
 
-function FHome({ projectID }) {
-    const [from, setFrom] = useState("");
-    const [to, setTo] = useState("");
-    const [departureDate, setDepartureDate] = useState("");
-    const [numberOfTravelers, setNumberOfTravelers] = useState(1);
-    const [travelClass, setTravelClass] = useState("Economy");
-    const [offers, setOffers] = useState([]);
-    const [filteredOffers, setFilteredOffers] = useState([]);
+function FHome({ from, setfrom, to, setTo, flightsProps, setFilteredFlights }) {
+  const [flightOption, setFlightOption] = useState([]);
 
-    useEffect(() => {
-        const fetchOffers = async () => {
-            try {
-                const response = await fetch(`https://academics.newtonschool.co/api/v1/bookingportals/offers?filter={"type":"ALL"}`, {
-                    headers: {
-                        projectID: f104bi07c490
-                    }
-                });
-                const data = await response.json();
-                setOffers(data);
-                setFilteredOffers(data);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        fetchOffers();
-    }, [projectID]);
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            const response = await fetch(`https://academics.newtonschool.co/api/v1/bookingportals/flight?search={"source":"${from}","destination":"${to}"}&day=${departureDate}`, {
-                headers: {
-                    projectID: f104bi07c490
-                }
-            });
-            if (!response.ok) {
-                throw new Error('Failed to fetch flight details');
-            }
-            const searchData = await response.json();
-            // Redirect user to search result page passing the searchData
-            // Example: history.push('/search-results', { searchData });
-        } catch (error) {
-            console.error('Error performing search:', error);
-        }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://content.newtonschool.co/v1/pr/63b85b1209f0a79e89e17e3a/flights"
+        );
+        const data = await response.json();
+        setFlightOption(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
+    fetchData();
+  }, []);
+  async function searchBuses(setIsLoading) {
+    // const day = WEEKDAYS[new dayjs(searchParams.get("date")).day()];
+    // const searchVal = JSON.stringify({
+    // 	source: BUS_CITIES[source],
+    // 	destination: BUS_CITIES[destination],
+    // });
+    const url = `https://academics.newtonschool.co/api/v1/bookingportals/flight?search=${JSON.stringify(
+      { source: from, destination: to }
+    )}&day=Mon`;
+    try {
+      const data = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          projectID: "f104bi07c490",
+        },
+      });
+      const res = await data.json();
+      console.log(res);
+      // setBusRoutes(res.data.buses);
+    } catch (error) {
+      console.log(error);
+      // setBusRoutes(null);
+    } finally {
+      // setIsLoading(false);
+    }
+  }
 
-    const handleFromChange = (event) => {
-        setFrom(event.target.value);
-    };
-
-    const handleToChange = (event) => {
-        setTo(event.target.value);
-    };
-
-    const handleDepartureDateChange = (event) => {
-        setDepartureDate(event.target.value);
-    };
-
-    const handleNumberOfTravelersChange = (event) => {
-        setNumberOfTravelers(event.target.value);
-    };
-
-    const handleTravelClassChange = (event) => {
-        setTravelClass(event.target.value);
-    };
-
-    return (
-        <div className="home__container">
-            <div className="home">
-                <p>Book International and Domestic Flights</p>
-                <form onSubmit={handleSubmit}>
-                    <div className="inputs">
-                        <div className="from home__input">
-                            <p>FROM (Enter city or airport)</p>
-                            <input type="text" value={from} onChange={handleFromChange} placeholder="Enter city or airport" />
-                        </div>
-                        <div className="to home__input">
-                            <p>TO (Enter city or airport)</p>
-                            <input type="text" value={to} onChange={handleToChange} placeholder="Enter city or airport" />
-                        </div>
-                        <div className="departure home__input">
-                            <p>DEPARTURE DATE</p>
-                            <input type="date" value={departureDate} onChange={handleDepartureDateChange} />
-                        </div>
-                        <div className="number-of-travelers home__input">
-                            <p>NUMBER OF TRAVELERS</p>
-                            <input type="number" value={numberOfTravelers} onChange={handleNumberOfTravelersChange} />
-                        </div>
-                        <div className="travel-class home__input">
-                            <p>CLASS</p>
-                            <select value={travelClass} onChange={handleTravelClassChange}>
-                                <option value="Economy">Economy</option>
-                                <option value="Business">Business</option>
-                                <option value="First Class">First Class</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div>
-                        <button className="home__search" type="submit">SEARCH</button>
-                    </div>
-                </form>
-            </div>
-
-            <div className="offers">
-                <p>Offers</p>
-                <div className="offer-categories">
-                    <button onClick={() => setFilteredOffers(offers)}>All</button>
-                    <button onClick={() => setFilteredOffers(offers.filter(offer => offer.type === "FLIGHTS"))}>Flights</button>
-                    <button onClick={() => setFilteredOffers(offers.filter(offer => offer.type === "HOTELS"))}>Hotels</button>
-                    <button onClick={() => setFilteredOffers(offers.filter(offer => offer.type === "BUS"))}>Bus</button>
-                    <button onClick={() => setFilteredOffers(offers.filter(offer => offer.type === "RAILS"))}>Trains</button>
-                </div>
-                <div className="offer-list">
-                    {filteredOffers.map((offer, index) => (
-                        <div key={index} className="offer">
-                            <h3>{offer.title}</h3>
-                            <p>{offer.description}</p>
-                            <p>{offer.discount}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const result = flightsProps.filter(
+      (data) => data.from === from && data.to === to
     );
+    setFilteredFlights(result);
+    searchBuses();
+  };
+
+  const handleFromChange = (event) => {
+    setfrom(event.target.value);
+  };
+
+  const handleToChange = (event) => {
+    setTo(event.target.value);
+  };
+
+  return (
+    <div className="home__container">
+      <div className="home">
+        <p>Book International and Domestic Flights</p>
+        <form onSubmit={handleSubmit}>
+          <div className="inputs">
+            <div className="from home__input">
+              <p>FROM</p>
+              <select onChange={handleFromChange} defaultValue="1">
+                <option value="dehli">Select City</option>
+                {flightOption.map((form, index) => (
+                  <option key={index} value={form.from}>
+                    {form.from}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="to home__input">
+              <p>TO</p>
+              <select onChange={handleToChange} defaultValue="1">
+                <option value="goa">Select City</option>
+                {flightOption.map((to, index) => (
+                  <option key={index} value={to.to}>
+                    {to.to}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="departure home__input">
+              <p>DEPARTURE DATE</p>
+              <input type="date" />
+            </div>
+          </div>
+          <div>
+            <button className="home__search">SEARCH</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 }
 
 export default FHome;
