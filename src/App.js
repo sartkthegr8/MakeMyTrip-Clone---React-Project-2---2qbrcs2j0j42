@@ -19,7 +19,9 @@ import { Suspense, lazy } from "react";
 const Flights = lazy(() => import("./components/Screen/Flights/Flights.jsx"));
 const FlightSearch = lazy(() =>
 	import("./components/Screen/Flights/Search/FlightSearch.jsx")
+	
 );
+// here make changees
 const FlightBooking = lazy(() =>
 	import("./components/Screen/Flights/Booking/FlightBooking.jsx")
 );
