@@ -12,6 +12,7 @@ function getTimeRange(time) {
 	if (time > "06:00" && time <= "12:00") return "morning";
 	if (time > "12:00" && time <= "18:00") return "mid-day";
 	if (time > "18:00" && time <= "24:00") return "night";
+	if (time > "22:00" && time <= "00:00") return "mid-night";
 }
 export default function TrainSearchProvider({ children }) {
 	const [searchParams] = useSearchParams();

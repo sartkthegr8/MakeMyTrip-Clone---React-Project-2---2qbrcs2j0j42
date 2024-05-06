@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { projectID } from "../constants";
 
 const AuthContext = createContext();
@@ -10,6 +10,7 @@ export const useAuthContext = () => {
 	return useContext(AuthContext);
 };
 export default function AuthProvider({ children }) {
+	const navigate = useNavigate();
 	async function signUp(user) {
 		const bodyObj = { ...user, appType: "bookingportals" };
 		try {
@@ -82,12 +83,14 @@ export default function AuthProvider({ children }) {
 		localStorage.setItem("authToken", null);
 		localStorage.setItem("userDetails", null);
 		setIsLoggedIn(false);
+		navigate('/');
 	}
+
 	const [showLoginSignupForm, setShowLoginSignupForm] = useState(false);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [redirect, setRedirect] = useState(false);
 	const [redirectTo, setRedirectTo] = useState("");
-	const navigate = useNavigate();
+	
 	const provider = {
 		showLoginSignupForm,
 		setShowLoginSignupForm,

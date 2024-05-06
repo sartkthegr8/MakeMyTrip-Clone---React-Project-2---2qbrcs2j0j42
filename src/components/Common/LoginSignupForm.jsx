@@ -110,7 +110,7 @@ function LogInTab() {
 			style={{ display: "flex", flexDirection: "column", gap: "24px" }}
 		>
 			<Typography variant="h5" component="h2" color={"rgba(0,0,0,0.87)"}>
-				Log in to  MakeMyTrip
+				Log in to MakeMyTrip
 			</Typography>
 			<TextField
 				label="Enter Email"
@@ -242,7 +242,7 @@ function SignUpTab() {
 			onSubmit={handleSignUpButton}
 		>
 			<Typography variant="h5" component="h2" color={"rgba(0,0,0,0.87)"}>
-				Sign up to  MakeMyTrip
+				Sign up to MakeMyTrip
 			</Typography>
 			<TextField
 				onChange={removeError}

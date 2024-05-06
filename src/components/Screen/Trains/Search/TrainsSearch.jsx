@@ -369,6 +369,12 @@ export default function TrainsSearch() {
 							</ToggleButton>
 							<Typography>Night</Typography>
 						</Box>
+						<Box>
+							<ToggleButton disableRipple value="mid-night">
+								22:00 - 00:00
+							</ToggleButton>
+							<Typography>Mid-Night</Typography>
+						</Box>
 					</ToggleButtonGroup>
 				</Stack>
 				<Stack gap={2} alignItems={"center"}>

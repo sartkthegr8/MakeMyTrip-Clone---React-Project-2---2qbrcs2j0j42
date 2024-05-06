@@ -9,6 +9,7 @@ import Avatar from "@mui/material/Avatar";
 import SvgIcon from "@mui/material/SvgIcon";
 import { useAuthContext } from "../../Contexts/AuthProvider";
 import { AVATAR_BACKGROUND_COLORS } from "../../constants";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function DashboardMenu() {
 	const { logOut } = useAuthContext();
@@ -29,6 +30,7 @@ export default function DashboardMenu() {
 		}
 		setOpen(false);
 	};
+	
 	const prevOpen = useRef(open);
 	useEffect(() => {
 		if (prevOpen.current === true && open === false) {
@@ -114,9 +116,14 @@ export default function DashboardMenu() {
 					<ClickAwayListener onClickAway={handleClose}>
 						<MenuList autoFocusItem={open}>
 							<MenuItem onClick={logOut}>Logout</MenuItem>
+							<MenuItem > <Link to="/booking/history" style={{ color: "rgba(0, 0, 0, 0.8)" }}>
+							My Booking
+							</Link></MenuItem>
+
 						</MenuList>
 					</ClickAwayListener>
 				</Paper>
+				
 			</Popper>
 		</div>
 	);
