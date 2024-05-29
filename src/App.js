@@ -17,6 +17,7 @@ import GlobalLoader from "./components/Common/GlobalLoader.jsx";
 import { Suspense, lazy } from "react";
 
 const Flights = lazy(() => import("./components/Screen/Flights/Flights.jsx"));
+const BookingHistory = lazy(() => import("./components/Common/BookingHistory.jsx"));
 const FlightSearch = lazy(() =>
 	import("./components/Screen/Flights/Search/FlightSearch.jsx")
 	
@@ -136,6 +137,11 @@ function App() {
 														path="/payment"
 														element={<Payment />}
 													/>
+													<Route
+														path="/booking/history"
+														element={<BookingHistory/>}
+													/>
+
 												</Routes>
 												<Footer />
 											</Suspense>
